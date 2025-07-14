@@ -1,0 +1,51 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Empyrean Service Survivor</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f0f0f0; text-align: center; padding: 20px; }
+    h1 { color: #2c3e50; }
+    .game-section { margin: 20px auto; padding: 20px; background: #fff; border-radius: 10px; width: 80%; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+    .mini-game { margin: 10px; padding: 10px; display: inline-block; background: #3498db; color: white; border-radius: 5px; cursor: pointer; transition: transform 0.3s ease; }
+    .mini-game:hover { transform: scale(1.1); }
+    .animate-bounce { animation: bounce 1s; }
+    .animate-spin { animation: spin 1s linear; }
+    .animate-fade { animation: fade 1s ease-in-out; }
+    .animate-grow { animation: grow 1s ease-in-out; }
+    @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+    @keyframes spin { 100% { transform: rotate(360deg); } }
+    @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes grow { 0% { transform: scale(1); } 50% { transform: scale(1.2); } 100% { transform: scale(1); } }
+  </style>
+</head>
+<body>
+  <h1>Empyrean Service Survivor</h1>
+  <div class="game-section">
+    <h2>Mini-Games</h2>
+    <div class="mini-game" onclick="playMiniGame('stretch', 'animate-bounce')">🧘 Stretch Break</div>
+    <div class="mini-game" onclick="playMiniGame('cat', 'animate-spin')">🐱 Pet the Virtual Cat</div>
+    <div class="mini-game" onclick="playMiniGame('trivia', 'animate-fade')">🧠 Trivia Time</div>
+    <div class="mini-game" onclick="playMiniGame('plant', 'animate-grow')">🌱 Desk Plant Care</div>
+  </div>
+
+  <audio id="stretch" src="stretch.mp3"></audio>
+  <audio id="cat" src="cat.mp3"></audio>
+  <audio id="trivia" src="trivia.mp3"></audio>
+  <audio id="plant" src="plant.mp3"></audio>
+
+  <script>
+    function playMiniGame(id, animationClass) {
+      const el = document.querySelector(`[onclick*="${id}"]`);
+      el.classList.add(animationClass);
+      setTimeout(() => el.classList.remove(animationClass), 1000);
+      const audio = document.getElementById(id);
+      if (audio) {
+        audio.currentTime = 0;
+        audio.play();
+      }
+    }
+  </script>
+</body>
+</html>
